@@ -1,0 +1,8 @@
+import { useEffect, useState } from 'react'
+import { Play, ArrowUpRight, X } from 'lucide-react'
+import { projects } from '../data/content'
+export default function Work() {
+  const [activeProject, setActiveProject] = useState(null)
+  useEffect(() => { const close = (event) => event.key === 'Escape' && setActiveProject(null); window.addEventListener('keydown', close); return () => window.removeEventListener('keydown', close) }, [])
+  return <section id="work" className="work-new section"><div className="section-intro"><span>02 / SELECTED WORK</span><h2>MADE TO<br/><em>BE WATCHED.</em></h2></div><div className="work-grid">{projects.map((p, i) => <article className={'work-card ' + p.size} key={p.title}><button className="project-trigger" onClick={() => setActiveProject(p)} aria-label={'Play ' + p.title}><div className="image-wrap"><img loading="lazy" src={p.image} alt={'Preview for ' + p.title} onError={(event) => { event.currentTarget.style.display = 'none' }}/><span className="play-button"><Play fill="currentColor" size={15}/></span><b>0{i + 1}</b></div><div><span>{p.type}</span><h3>{p.title}</h3><ArrowUpRight size={18}/></div></button></article>)}</div>{activeProject && <div className="video-modal" role="dialog" aria-modal="true" aria-label={activeProject.title}><div className="video-modal-inner"><button className="video-close" onClick={() => setActiveProject(null)} aria-label="Close video"><X/></button><iframe src={`https://drive.google.com/file/d/${activeProject.videoId}/preview`} title={activeProject.title} allow="autoplay; fullscreen" allowFullScreen/><div><span>{activeProject.type}</span><h3>{activeProject.title}</h3></div></div></div>}</section>
+}

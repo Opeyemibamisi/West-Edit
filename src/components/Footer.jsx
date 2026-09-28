@@ -1,0 +1,1 @@
+import logo from '../../West-logo.png';export default function Footer(){return <footer><img src={logo} alt="West Edit"/><p>Video editing for stories worth watching.</p><span>© 2026 WEST EDIT</span></footer>}

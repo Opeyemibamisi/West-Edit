@@ -1,0 +1,1 @@
+import logo from '../../West-logo.png';export default function Loader(){return <div className="loader"><div className="loader-orbit"><div className="loader-mark"><img src={logo} alt="West Edit"/></div></div><span>WEST EDIT / READYING THE CUT</span></div>}
